@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('for.avif') center/cover no-repeat;
+            transition: background 0.5s ease;
+        }
+
+        .login-container, .main-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .show-animation {
+            opacity: 1;
+        }
+
+        .food-item {
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .food-item:hover {
+            transform: scale(1.05);
+        }
+
+        .food-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .food-item button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .food-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body ng-app="foodDeliveryApp" ng-controller="MainController">
+
+    <!-- Login Container -->
+    <div class="login-container show-animation" ng-show="!isLoggedIn">
+        <h2>Login</h2>
+        <i class="fa fa-user graduation-cap"></i>
+        <form ng-submit="login()">
+            <input type="text" ng-model="username" placeholder="Username" required>
+            <input type="password" ng-model="password" placeholder="Password" required>
+            <div class="error-message" ng-show="errorMessage">{{ errorMessage }}</div>
+            <button type="submit">Login</button>
+            <br>
+            Don't have an account? <a href="registration.html">Register Now</a>
+        </form>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container show-animation" ng-show="isLoggedIn">
+        <h1>Welcome to Food Delivery System</h1>
+        <h2>Our Popular Recipes</h2>
+        <div class="food-list" style="display: flex; justify-content: center; flex-wrap: wrap;">
+            <div class="food-item" ng-repeat="food in foodItems">
+                <img ng-src="{{ food.image }}" alt="{{ food.name }}">
+                <h3>{{ food.name }}</h3>
+                <p>{{ food.description }}</p>
+                <button ng-click="order(food)">Order Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('foodDeliveryApp', []);
+
+        app.controller('MainController', function($scope) {
+            $scope.isLoggedIn = false;
+            $scope.username = '';
+            $scope.password = '';
+            $scope.errorMessage = '';
+
+            // Sample food items
+            $scope.foodItems = [
+                { name: 'Burger', description: 'Juicy beef patty with cheddar cheese.', image: 'burger.jpg' },
+                { name: 'Pizza', description: 'Freshly baked pizza with mozzarella.', image: 'pizza.jpg' },
+                { name: 'Pasta', description: 'Italian pasta with creamy sauce.', image: 'pasta.jpg' },
+                { name: 'Biryani', description: 'Spiced rice dish with meat and vegetables.', image: 'biryani.jpg' },
+                { name: 'Cake', description: 'Delicious chocolate cake.', image: 'cake.jpg' },
+                { name: 'Momos', description: 'Steamed dumplings filled with vegetables.', image: 'momos.jpg' },
+                { name: 'Paneer Sticks', description: 'Fried paneer sticks served with dips.', image: 'paneer.jpg' },
+                { name: 'Ice Cream', description: 'Creamy ice cream with various flavors.', image: 'icecream.jpg' }
+            ];
+
+            $scope.login = function() {
+                // Implement your login logic here
+                if ($scope.username === 'user' && $scope.password === 'pass') {
+                    $scope.isLoggedIn = true;
+                } else {
+                    $scope.errorMessage = 'Invalid username or password';
+                }
+            };
+
+            $scope.order = function(food) {
+                alert('You have ordered: ' + food.name);
+            };
+        });
+    </script>
+</body>
+</html>

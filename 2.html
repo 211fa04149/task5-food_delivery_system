@@ -1,0 +1,206 @@
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGoD7id-M1jzOTFdn5GIXih9R10UqaDDIIjw&s');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Heading Style */
+        .app-heading {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* First image animation */
+        .delivery-animation {
+            position: absolute;
+            top: -60px;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .delivery-animation img {
+            width: 80px;
+            animation: moveDelivery 10s linear forwards;
+        }
+
+        @keyframes moveDelivery {
+            0% {
+                transform: translateX(-150%);
+            }
+            70% {
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Second image animation */
+        .second-logo {
+            position: absolute;
+            top: -60px;
+            width: 100%;
+            height: 80px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .second-logo img {
+            width: 80px;
+            animation: moveSecondLogo 10s linear forwards;
+        }
+
+        @keyframes moveSecondLogo {
+            0% {
+                transform: translateX(150%);
+            }
+            70% {
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .login-box {
+            margin-top: 60px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 18px;
+            transition: .5s;
+        }
+
+        .input-box input:focus ~ label,
+        .input-box input:valid ~ label {
+            top: -5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- App Heading -->
+        <div class="app-heading">Food Delivery App</div>
+
+        <!-- First image with delivery animation -->
+        <div class="delivery-animation">
+            <img src="data:image/jpeg;base64,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" alt="Delivery Logo">
+        </div>
+
+        <!-- Second image that appears after first disappears -->
+        <div class="second-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxayBN01_cdteJb14h8-twdg8hNHWTPL13Q&s" alt="Food Delivery Second Logo">
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-box">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-box">
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const deliveryAnimation = document.querySelector('.delivery-animation img');
+        const secondLogo = document.querySelector('.second-logo img');
+
+        // First image animation ends, then start the second image animation
+        deliveryAnimation.addEventListener('animationend', () => {
+            document.querySelector('.delivery-animation').style.display = 'none'; // Hide first image
+            document.querySelector('.second-logo').style.display = 'flex'; // Show second image
+            secondLogo.style.animation = 'moveSecondLogo 5s linear forwards'; // Start second animation
+        });
+    </script>
+</body>
+</html>
